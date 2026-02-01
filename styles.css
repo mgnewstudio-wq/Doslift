@@ -30,8 +30,8 @@
     --shadow-glow: 0 0 40px rgba(65, 105, 225, 0.35);
 
     /* Typography - Modern Clean Font */
-    --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-display: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
     /* Spacing */
     --section-padding: 120px;
@@ -508,8 +508,8 @@ a {
 
 .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
     line-height: 1.1;
     margin-bottom: 0;
     letter-spacing: -1px;
@@ -541,7 +541,7 @@ a {
 }
 
 .hero-description {
-    font-size: 1.125rem;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.6);
     max-width: 600px;
     line-height: 1.6;
@@ -799,11 +799,11 @@ a {
 
 /* Typography */
 .service-title {
-    font-size: 3rem;
+    font-size: 2.25rem;
     font-weight: 700;
     color: white;
     line-height: 1.1;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     transform: translateY(20px);
     transition: transform 0.5s ease;
 }
@@ -813,11 +813,11 @@ a {
 }
 
 .service-desc {
-    font-size: 1.125rem;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.8);
     max-width: 450px;
     line-height: 1.6;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     opacity: 0.9;
     transform: translateY(20px);
     transition: all 0.5s ease 0.1s;
@@ -4731,3 +4731,96 @@ a {
     font-size: 0.6rem;
     padding: 3px 6px;
 }
+
+/* =====================================================
+   PARTNERS SECTION
+   ===================================================== */
+.partners {
+    padding: 80px 0;
+    background: #f8fafc;
+    overflow: hidden;
+}
+
+.partners .section-header {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.partners-ticker-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.partners-ticker-track {
+    display: flex;
+    gap: 80px;
+    animation: partnersTicker 35s linear infinite;
+    width: max-content;
+}
+
+@keyframes partnersTicker {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.partner-logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 90px;
+    filter: grayscale(1) opacity(0.6);
+    transition: all 0.3s ease;
+}
+
+.partner-logo-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.partner-logo-item:hover {
+    filter: grayscale(0) opacity(1);
+    transform: scale(1.05);
+}
+
+/* Specific styling for new logos if needed, though grayscale handles most */
+.partner-logo-item .logo-white-bg {
+    /* If logos have white bg, let's try to mix them or invert if needed on light bg */
+    /* Since section is light (#f8fafc), white bg logos might look odd if they have a non-transparent box. 
+       If they are transparent pngs with black text, they work.
+       If they are transparent pngs with white text (like for hero), they will be invisible on light bg!
+    */
+    filter: invert(1);
+    /* Invert white logos to black for light section */
+}
+
+/* Logic:
+   Hero Ticker = Dark Background -> Needs Light/White Logos.
+   Partners Section = Light Background -> Needs Dark Logos.
+   
+   If the provided logos are White-on-Transparent (for Hero):
+   - Hero: Perfect.
+   - Partners: Invisible. Need `filter: invert(1)` to make them black.
+   
+   If the provided logos are Black-on-Transparent:
+   - Hero: Invisible unless `filter: invert(1)` (which .ticker-item does).
+   - Partners: Perfect.
+   
+   Let's verify what .ticker-item does in styles.css.
+   .ticker-item img { filter: brightness(0) invert(1); } -> Makes everything WHITE.
+   So if we upload Black or Colored logos -> they become White for Hero. Good.
+   
+   For Partners section (Light bg):
+   .partner-logo-item { filter: grayscale(1) opacity(0.6); }
+   We need them to be visible. If the uploaded logos are "White", grayscale white is white. On light bg = invisible.
+   So for Partners section, we should INVERT white logos to make them dark.
+*/
