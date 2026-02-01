@@ -491,7 +491,7 @@ a {
     position: relative;
     z-index: 2;
     color: var(--white);
-    max-width: 800px;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: center;
