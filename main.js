@@ -579,12 +579,12 @@ function initProjectsGrid() {
         }
 
         // Update tab counts display
-        //tabs.forEach(tab => {
-           // const tabCity = tab.dataset.city;
-            //const count = getCardsForCity(tabCity).length;
-          //  const countSpan = tab.querySelector('.tab-count');
-           // if (countSpan) countSpan.textContent = `(${count})`;
-       // });
+        // tabs.forEach(tab => {
+        //     const tabCity = tab.dataset.city;
+        //     const count = getCardsForCity(tabCity).length;
+        //     const countSpan = tab.querySelector('.tab-count');
+        //     if (countSpan) countSpan.textContent = `(${count})`;
+        // });
     }
 
     function animateValue(obj, start, end, duration) {
@@ -771,7 +771,42 @@ function initReviewsSlider() {
    ===================================================== */
 document.addEventListener('DOMContentLoaded', () => {
     init3DCarousel();
+    initCatalogModal();
 });
+
+function initCatalogModal() {
+    const modal = document.getElementById('catalogModal');
+    const openBtn = document.getElementById('openCatalogModal');
+    const closeBtn = document.getElementById('closeCatalogModal');
+    const backdrop = modal?.querySelector('.modal-backdrop');
+
+    if (!modal || !openBtn) return;
+
+    function openModal() {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+
+    // ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
 
 function init3DCarousel() {
     const carousel = document.getElementById('spheresCarousel');
@@ -998,5 +1033,4 @@ function init3DCarousel() {
     updateCarousel();
     startAutoPlay();
 }
-
 
