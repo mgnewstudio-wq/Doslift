@@ -1731,7 +1731,7 @@ a {
 }
 
 .industries-image-wrapper.no-image::after {
-    content: '???';
+    content: '🏗️';
     font-size: 80px;
     opacity: 0.15;
     filter: drop-shadow(0 10px 20px rgba(65, 105, 225, 0.1));
@@ -4824,4 +4824,3 @@ a {
    We need them to be visible. If the uploaded logos are "White", grayscale white is white. On light bg = invisible.
    So for Partners section, we should INVERT white logos to make them dark.
 */
-.
