@@ -579,12 +579,12 @@ function initProjectsGrid() {
         }
 
         // Update tab counts display
-        tabs.forEach(tab => {
-            const tabCity = tab.dataset.city;
-            const count = getCardsForCity(tabCity).length;
-            const countSpan = tab.querySelector('.tab-count');
-            if (countSpan) countSpan.textContent = `(${count})`;
-        });
+        //tabs.forEach(tab => {
+           // const tabCity = tab.dataset.city;
+            //const count = getCardsForCity(tabCity).length;
+          //  const countSpan = tab.querySelector('.tab-count');
+           // if (countSpan) countSpan.textContent = `(${count})`;
+       // });
     }
 
     function animateValue(obj, start, end, duration) {
@@ -998,4 +998,5 @@ function init3DCarousel() {
     updateCarousel();
     startAutoPlay();
 }
+
 
